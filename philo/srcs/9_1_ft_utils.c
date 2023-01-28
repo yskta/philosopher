@@ -6,17 +6,21 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 19:52:51 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/01/28 16:31:12 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/01/28 16:58:34 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/philosopher.h"
 
-static unsigned int	ft_isspace(int c);
-static const char	*ft_skipspace(const char *str);
-static const char	*ft_flag(const char *str, int *sign);
+int	ft_isdigit(int c)
+{
+	if ('0' <= c && c <= '9')
+		return (1);
+	else
+		return (0);
+}
 
-static	unsigned int	ft_isspace(int c)
+unsigned int	ft_isspace(int c)
 {
 	if ((9 <= c && c <= 13) || c == 32)
 		return (1);
@@ -24,14 +28,14 @@ static	unsigned int	ft_isspace(int c)
 		return (0);
 }
 
-static const char	*ft_skipspace(const char *str)
+const char	*ft_skipspace(const char *str)
 {
 	while (ft_isspace(*str) == 1)
 		str++;
 	return (str);
 }
 
-static const char	*ft_flag(const char *str, int *sign)
+const char	*ft_flag(const char *str, int *sign)
 {
 	*sign = 1;
 	if (*str == '-')

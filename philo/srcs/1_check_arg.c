@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 12:48:45 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/01/28 16:47:24 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/01/28 17:05:19 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ bool    check_each_param(int argc, char **argv)
                 break;
             }
         }
-        else
+        else if (i != 5)
         {
             if (ft_atoi(argv[i]) < 60 || INT_MAX < ft_atoi(argv[i]))
             {
