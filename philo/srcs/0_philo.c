@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 12:45:34 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/01/28 16:25:27 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/01/28 16:53:20 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int main(int argc, char **argv)
 
     data = (t_data *)malloc(sizeof(t_data));
     if (check_args(argc, argv) == false)
-    
-    
+        printf("ARG Error\n");
     return (0);
 }
