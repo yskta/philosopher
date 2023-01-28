@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_arg_check.c                                      :+:      :+:    :+:   */
+/*   1_check_arg.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 12:48:45 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/01/28 14:41:16 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/01/28 16:47:24 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 bool check_args(int argc, char **argv)
 {
     bool check_arg;
-    size_t i;
 
     check_arg = true;
-    i = 0;
     if (argc != 5 && argc != 6)
         check_arg = false;
     else if (check_args_num_or_not(argc, argv) == false)
@@ -71,11 +69,30 @@ bool check_each_arg_num_or_not(char *argv)
 
 bool    check_each_param(int argc, char **argv)
 {
-    bool check_result;
-
+    bool    check_result;
+    size_t  i;
     
     check_result = true;
-
-
+    i = 1;
+    while (i < argc)
+    {
+        if (i == 1)
+        {
+            if (ft_atoi(argv[i]) > 200)
+            {
+                check_result = false;
+                break;
+            }
+        }
+        else
+        {
+            if (ft_atoi(argv[i]) < 60 || INT_MAX < ft_atoi(argv[i]))
+            {
+                check_result = false;
+                break ;
+            }
+        }
+        i++;
+    }
     return (check_result);
 }
