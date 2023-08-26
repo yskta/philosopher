@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   0_philo.c                                          :+:      :+:    :+:   */
+/*   0_main.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 12:45:34 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/01/28 16:53:20 by yokitaga         ###   ########.fr       */
+/*   Created: 2023/08/25 11:20:54 by yokitaga          #+#    #+#             */
+/*   Updated: 2023/08/25 11:21:30 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philosopher.h"
+#include "philo.h"
 
 int main(int argc, char **argv)
 {
-    t_data *data;
-
-    data = (t_data *)malloc(sizeof(t_data));
-    if (check_args(argc, argv) == false)
-        printf("ARG Error\n");
+    
     return (0);
 }
