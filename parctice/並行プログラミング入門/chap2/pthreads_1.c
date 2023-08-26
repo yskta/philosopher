@@ -36,6 +36,7 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < NUM_THREADS; i++) {
         char *ptr;
         //pthread_joinはスレッドの終了を待機する関数
+        //pthread_joinを使わないと、メモリリークが発生するのでjoinは必須
         if (pthread_join(v[i], (void **)&ptr) == 0) {
             printf("msg = %s\n", ptr);
         } else {

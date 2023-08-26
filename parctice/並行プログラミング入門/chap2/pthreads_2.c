@@ -14,6 +14,8 @@ void *thread_func(void *arg) {
 
 int main(int argc, char *argv[]) {
     // アトリビュートを初期化 <1>
+    // pthread_attr_t型の変数を宣言し、pthread_attr_init関数で初期化する
+    // pthread_attr_initは、スレッドの終了とともにスレッドのリソースを解放するかどうかを指定するアトリビュートを初期化する
     pthread_attr_t attr;
     if (pthread_attr_init(&attr) != 0) {
         perror("pthread_attr_init");
@@ -27,19 +29,17 @@ int main(int argc, char *argv[]) {
     }
 
     // アトリビュートを指定してスレッド生成
+    //　　アトリビュートとは、スレッドの動作を制御するためのパラメータのこと
     pthread_t th;
     if (pthread_create(&th, &attr, thread_func, NULL) != 0) {
         perror("pthread_create");
         return -1;
     }
-
     // アトリビュート破棄
     if (pthread_attr_destroy(&attr) != 0) {
         perror("pthread_attr_destroy");
         return -1;
     }
-
     sleep(7);
-
     return 0;
 }
