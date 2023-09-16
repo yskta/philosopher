@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 11:20:54 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/16 15:12:08 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/16 18:52:11 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,17 @@
 
 int main(int argc, char **argv)
 {
+    t_info  *all_info;
+
+    all_info = (t_info *)malloc(sizeof(t_info));
+    if (!all_info)
+        return (error_msg("main:malloc error"));
     //引数 1つ目：哲学者の人数 2つ目：死ぬまでの時間 3つ目:食事を終えるまでの時間 4つ目:睡眠を終えるまでの時間 + 5つ目:食事しないといけない回数(任意)
     if (check_input(argc, argv) == false)
         return (0);
     //引数を構造体に格納(データの初期設定)
-    //set_init_data(int argc, char **argv);
+    if (init_data(all_info, argc, argv) == false)
+        return (free_all(all_info));
     //スレッド生成
     
     //スレッドの終了待ち
