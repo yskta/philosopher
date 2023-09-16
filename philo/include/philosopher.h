@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 12:50:23 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/16 18:52:59 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/16 19:13:53 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ typedef struct info{
 	bool				can_continue;
 	size_t				num_of_philo_finish_eating;
 	size_t				start_time;
-	t_each_philo		*all_philos;
-	pthread_mutex_t		*fork;
+	t_each_philo		*all_philos;//各哲学者のデータを保持するための配列
+	pthread_mutex_t		*fork;//各哲学者が持つフォークを保持するための配列
 	pthread_mutex_t		*time;//時間を取得するためのmutex
-	pthread_t     		*thread;
-	pthread_mutex_t		end_flag;
-	pthread_mutex_t		count_meals;
+	pthread_t     		*thread;//各哲学者のスレッドを保持するための配列
+	pthread_mutex_t		end_flag;//全哲学者が食事を終えたかどうかを判定するためのmutex
+	pthread_mutex_t		count_meals;//食事回数をカウントするためのmutex
 	pthread_mutex_t		write;
 }	t_info;
 
@@ -69,6 +69,10 @@ void    set_arg(t_info *all_info, int argc, char **argv);
 size_t  get_current_time(void);
 bool    set_other_info(t_info *all_info);
 bool	init_data(t_info *all_info, int argc, char **argv);
+//3_init_mutex.c
+bool	init_mutex(t_info *all_info);
+//4_init_philo.c
+
 
 
 #endif
