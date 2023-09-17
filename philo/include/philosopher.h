@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 12:50:23 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/17 15:05:59 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/17 16:00:10 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ typedef struct info{
 	pthread_mutex_t		*fork;//各哲学者が持つフォークを保持するための配列
 	pthread_mutex_t		*time;//時間を取得するためのmutex
 	pthread_t     		*thread;//各哲学者のスレッドを保持するための配列
+	pthread_t			monitor;//監視用のスレッド
 	pthread_mutex_t		end_flag;//全哲学者が食事を終えたかどうかを判定するためのmutex
 	pthread_mutex_t		count_meals;//食事回数をカウントするためのmutex
 	pthread_mutex_t		write;
 }	t_info;
 
-//監視用のデータを保持する構造体
 
 //関数一覧
 //utils.c
@@ -68,13 +68,16 @@ bool	check_input(int argc, char **argv);
 void    set_arg(t_info *all_info, int argc, char **argv);
 size_t  get_current_time(void);
 bool    set_other_info(t_info *all_info);
-bool	init_data(t_info *all_info, int argc, char **argv);
+bool	init_info(t_info *all_info, int argc, char **argv);
 //3_init_mutex.c
 bool	init_mutex(t_info *all_info);
 //4_init_philo.c
 void	set_ideal_time(t_each_philo *philo, t_info *all_info);
 void	init_each_philo(t_info *all_info);
-//5_start_philo.c
+//5_all_about_thread.c
+void	all_about_thread(t_info *all_info);
+//6_philo_routine.c
+
 
 
 

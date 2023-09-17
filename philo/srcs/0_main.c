@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 11:20:54 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/17 15:01:21 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/17 15:49:27 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,16 @@ int main(int argc, char **argv)
     if (check_input(argc, argv) == false)
         return (0);
     //引数を構造体に格納(データの初期設定)
-    if (init_data(all_info, argc, argv) == false)
+    if (init_info(all_info, argc, argv) == false)
         return (free_all(all_info));
     //mutexの初期化
     if (init_mutex(all_info) == false)
-        return (free_all(all_info));
+        return (free_and_destroy_all(all_info));
     //哲学者の初期化
     init_each_philo(all_info);
-    //スレッド生成
-    
-    //スレッドの終了待ち
-
-    //スレッドの破棄
-    
+    //スレッド生成、終了待ち、リソース解放
+    if (all_thread_create(all_info) == false)
+        return (free_and_destroy_all(all_info));
+    freeand_destroy_all(all_info);
     return (0);
 }

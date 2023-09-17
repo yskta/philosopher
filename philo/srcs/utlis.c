@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 14:29:48 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/16 18:45:23 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/17 15:49:49 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,35 @@ size_t ft_atoi(char *str)
 
 int free_all(t_info *all_info)
 {
+    //free系
+    if (all_info->all_philos)
+        free(all_info->all_philos);
+    if (all_info->fork)
+        free(all_info->fork);
+    if (all_info->time)
+        free(all_info->time);
+    if (all_info->thread)
+        free(all_info->thread);
+    free(all_info);
+    return (1);
+}
+
+int free_and_destroy_all(t_info *all_info)
+{
+    size_t i;
+
+    i = 0;
+    //mutexの解放
+    while (i < all_info->num_of_philo)
+    {
+        pthread_mutex_destroy(&all_info->fork[i]);
+        pthread_mutex_destroy(&all_info->time[i]);
+        i++;
+    }
+    pthread_mutex_destroy(&all_info->end_flag);
+    pthread_mutex_destroy(&all_info->count_meals);
+    pthread_mutex_destroy(&all_info->write);
+    //free系
     if (all_info->all_philos)
         free(all_info->all_philos);
     if (all_info->fork)
