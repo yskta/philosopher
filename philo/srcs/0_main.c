@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 11:20:54 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/16 19:14:27 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/17 15:01:21 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ int main(int argc, char **argv)
     if (init_mutex(all_info) == false)
         return (free_all(all_info));
     //哲学者の初期化
-    //if (init_philo(all_info) == false)
-        //return (free_all(all_info));
-    printf("start\n");
+    init_each_philo(all_info);
     //スレッド生成
     
     //スレッドの終了待ち
