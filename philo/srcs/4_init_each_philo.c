@@ -6,14 +6,14 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 19:16:55 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/17 15:05:04 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/17 15:05:41 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosopher.h"
 
 //要注意。あとで修正必要かも。
-void    set_ideal_time(t_each_philo *philo, t_info *all_info, size_t i)
+void    set_ideal_time(t_each_philo *philo, t_info *all_info)
 {
 	if (philo->id % 2 == 0)//iが奇数の場合。すなわち哲学者の番号がi + 1なので偶数
 		philo->ideal_time = all_info->time_to_eat;
@@ -41,7 +41,7 @@ void    init_each_philo(t_info *all_info)
 		philos[i].info = (void *)all_info; //構造体のアドレス
 		philos[i].can_continue = &(all_info->can_continue); //続けられるかどうか
 		philos[i].ideal_time = 0; //食事を終えるまでの時間
-		set_ideal_time(&philos[i], all_info, i);
+		set_ideal_time(&philos[i], all_info); //食事を終えるまでの時間を設定
 		i++;
 	}
 }

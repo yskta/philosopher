@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 12:50:23 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/17 14:43:50 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/17 15:05:59 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ bool	init_data(t_info *all_info, int argc, char **argv);
 //3_init_mutex.c
 bool	init_mutex(t_info *all_info);
 //4_init_philo.c
-void	set_ideal_time(t_each_philo *philo, t_info *all_info, size_t i);
+void	set_ideal_time(t_each_philo *philo, t_info *all_info);
 void	init_each_philo(t_info *all_info);
 //5_start_philo.c
 
