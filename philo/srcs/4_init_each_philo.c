@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 19:16:55 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/17 15:00:57 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/17 15:05:04 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 //要注意。あとで修正必要かも。
 void    set_ideal_time(t_each_philo *philo, t_info *all_info, size_t i)
 {
-	if (i % 2)//iが奇数の場合。すなわち哲学者の番号がi + 1なので偶数
+	if (philo->id % 2 == 0)//iが奇数の場合。すなわち哲学者の番号がi + 1なので偶数
 		philo->ideal_time = all_info->time_to_eat;
-	else//iが偶数の場合
+	else
 		philo->ideal_time = 0;
-	if (all_info->num_of_philo % 2 && i + 1 == all_info->num_of_philo)//哲学者の人数が奇数の場合、最後の哲学者は食事を終えるまでの時間を2倍にする。なぜなら左どなりが1番だから、1番の食事後、ようやく食べられる。詳しくはnafukaさんの説明を参照
+	if (all_info->num_of_philo % 2 && philo->id == all_info->num_of_philo)//哲学者の人数が奇数の場合、最後の哲学者は食事を終えるまでの時間を2倍にする。なぜなら左どなりが1番だから、1番の食事後、ようやく食べられる。詳しくはnafukaさんの説明を参照
 		philo->ideal_time = all_info->time_to_eat * 2;
 }
 
