@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 11:20:54 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/17 15:49:27 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/18 19:30:52 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int main(int argc, char **argv)
     //哲学者の初期化
     init_each_philo(all_info);
     //スレッド生成、終了待ち、リソース解放
-    if (all_thread_create(all_info) == false)
+    if (all_about_thread(all_info) == false)
         return (free_and_destroy_all(all_info));
-    freeand_destroy_all(all_info);
+    free_and_destroy_all(all_info);
     return (0);
 }
