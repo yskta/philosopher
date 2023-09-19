@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 12:50:23 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/17 16:00:10 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/19 10:06:47 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@
 # include <sys/time.h>
 # include <unistd.h>
 
+# define NUM_TAKE_FORK 0
+# define NUM_EAT 1
+# define NUM_SLEEP 2
+# define NUM_THINK 3
+# define NUM_DIE 4
+
 //各哲学者が持つデータを保持する構造体
 typedef struct each_philo{
 	size_t			id;
@@ -30,9 +36,9 @@ typedef struct each_philo{
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*time;
-	void			*info;
+	void			*all_info;
 	bool			*can_continue;
-	size_t			ideal_time;
+	//size_t			ideal_time;
 }	t_each_philo;
 
 //哲学者の数や時間などのデータを保持する構造体
@@ -41,42 +47,57 @@ typedef struct info{
 	size_t				time_to_die;
 	size_t				time_to_eat;
 	size_t				time_to_sleep;
-	int					finish_eating_count;
-	bool				need_to_count;
-	bool				can_continue;
-	size_t				num_of_philo_finish_eating;
-	size_t				start_time;
+	int					finish_eating_count;//食事する回数
+	bool				need_to_count;//食事回数をカウントするかどうか
+	bool				can_continue;//全哲学者が生きてるかどうか→falseなら終了。monitorで監視
+	size_t				num_of_philo_finish_eating;//食事を終えた哲学者の数
 	t_each_philo		*all_philos;//各哲学者のデータを保持するための配列
 	pthread_mutex_t		*fork;//各哲学者が持つフォークを保持するための配列
-	pthread_mutex_t		*time;//時間を取得するためのmutex
+	pthread_mutex_t		*time;//時間を取得するためのmutex。monitorも哲学者も使う。ここでだけphilo->last_eat_timeを更新/アクセスする。
 	pthread_t     		*thread;//各哲学者のスレッドを保持するための配列
 	pthread_t			monitor;//監視用のスレッド
-	pthread_mutex_t		end_flag;//全哲学者が食事を終えたかどうかを判定するためのmutex
+	pthread_mutex_t		end_flag;//このmutexでlockした時だけ、can_continueを編集する。
 	pthread_mutex_t		count_meals;//食事回数をカウントするためのmutex
 	pthread_mutex_t		write;
 }	t_info;
 
 
 //関数一覧
-//utils.c
-bool	error_msg(char *message);
-size_t	ft_atoi(char *str);
-int		free_all(t_info *all_info);
 //1_check_input.c
 bool	check_input(int argc, char **argv);
 //2_init_data.c
 void    set_arg(t_info *all_info, int argc, char **argv);
-size_t  get_current_time(void);
 bool    set_other_info(t_info *all_info);
 bool	init_info(t_info *all_info, int argc, char **argv);
 //3_init_mutex.c
 bool	init_mutex(t_info *all_info);
 //4_init_philo.c
-void	set_ideal_time(t_each_philo *philo, t_info *all_info);
+//void	set_ideal_time(t_each_philo *philo, t_info *all_info);
 void	init_each_philo(t_info *all_info);
 //5_all_about_thread.c
 void	all_about_thread(t_info *all_info);
-//6_philo_routine.c
+//6_1_philo_routine.c
+void	wait_philo(size_t time_to_wait);
+void	wait_for_die(t_each_philo *philo);
+bool	judge_continue(t_info *all_info);
+void	*philo_routine(void *each_philo);
+
+//6_2_each_routine.c
+void	take_fork(t_each_philo *philo, t_info *all_info);
+void	eat_count_checker(t_each_philo *philo, t_info *all_info);
+void	eat(t_each_philo *philo, t_info *all_info);
+void	sleep(t_each_philo *philo, t_info *all_info);
+void	think(t_each_philo *philo, t_info *all_info);
+
+//monitor.c
+void	*monitor(void *all_info);
+
+//utils.c
+bool	error_msg(char *message);
+size_t	ft_atoi(char *str);
+int		free_all(t_info *all_info);
+size_t  get_current_time(void);
+
 
 
 

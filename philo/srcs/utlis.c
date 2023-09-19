@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 14:29:48 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/17 15:49:49 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/19 09:57:23 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,50 @@ int free_and_destroy_all(t_info *all_info)
         free(all_info->thread);
     free(all_info);
     return (1);
+}
+
+size_t  get_current_time(void)
+{
+    struct timeval  time;
+    size_t          current_time;
+
+    if (gettimeofday(&time, NULL) == -1)
+        return (0);
+    current_time = (time.tv_sec * 1000) + (time.tv_usec / 1000);
+    return (current_time);
+}
+
+void    print_time_and_rotine(t_info *all_info, size_t philo_id, size_t routine)
+{
+	size_t  current_time;
+
+    //複数の哲学者スレッドがアクセスするので、ロックする
+	pthread_mutex_lock(&all_info->write);
+	current_time = get_current_time(info);
+	if (routine == NUM_YAKE_FORK && judge_continue(all_info))
+		printf("%zu %d has taken a fork\n", current_time, philo_id);
+	else if (routine == NUM_EAT && judge_continue(all_info))
+		printf("%zu %d is eating\n", current_time, philo_id);
+	else if (routine == NUM_SLEEP && judge_continue(all_info))
+		printf("%zu %d is sleeping\n", current_time, philo_id);
+	else if (routine == NUM_THINK && judge_continue(all_info))
+		printf("%zu %d is thinking\n", current_time, philo_id);
+	else if (routine == NUM_DIE && judge_continue(all_info))
+		printf("%zu %d died\n", current_time, philo_id);
+	pthread_mutex_unlock(&all_info->write);
+	return (0);
+}
+
+bool	judge_continue(t_info *all_info)
+{
+    pthread_mutex_lock(&all_info->end_flag);
+	if (all_info->can_continue == false)
+    {
+        pthread_mutex_unlock(&all_info->end_flag);
+        return (false);
+    }
+    pthread_mutex_unlock(&all_info->end_flag);
+    return (true);
 }
 
 
