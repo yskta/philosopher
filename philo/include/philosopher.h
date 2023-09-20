@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 12:50:23 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/19 10:06:47 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/19 22:15:12 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,28 +75,34 @@ bool	init_mutex(t_info *all_info);
 //void	set_ideal_time(t_each_philo *philo, t_info *all_info);
 void	init_each_philo(t_info *all_info);
 //5_all_about_thread.c
-void	all_about_thread(t_info *all_info);
+bool	all_about_thread(t_info *all_info);
 //6_1_philo_routine.c
-void	wait_philo(size_t time_to_wait);
+void	wait_time(size_t time_to_wait);
 void	wait_for_die(t_each_philo *philo);
-bool	judge_continue(t_info *all_info);
 void	*philo_routine(void *each_philo);
 
 //6_2_each_routine.c
-void	take_fork(t_each_philo *philo, t_info *all_info);
-void	eat_count_checker(t_each_philo *philo, t_info *all_info);
-void	eat(t_each_philo *philo, t_info *all_info);
-void	sleep(t_each_philo *philo, t_info *all_info);
-void	think(t_each_philo *philo, t_info *all_info);
+void	take_fork_routine(t_each_philo *philo, t_info *all_info);
+void	eat_count_check(t_each_philo *philo, t_info *all_info);
+void	eat_routine(t_each_philo *philo, t_info *all_info);
+void	sleep_routine(t_each_philo *philo, t_info *all_info);
+void	think_routine(t_each_philo *philo, t_info *all_info);
 
-//monitor.c
+//7_monitor.c
 void	*monitor(void *all_info);
+bool	death_check(size_t current_time, size_t start_time, t_each_philo *philo);
+bool	judge_die_lasteat(size_t current_time, size_t last_eat_time, t_each_philo *philo, t_info *info);
+bool	judge_die_start(size_t current_time,size_t start_time, t_each_philo *philo, t_info *info);
 
 //utils.c
 bool	error_msg(char *message);
 size_t	ft_atoi(char *str);
 int		free_all(t_info *all_info);
+int 	free_and_destroy_all(t_info *all_info);
 size_t  get_current_time(void);
+void    print_time_and_routine(t_info *all_info, size_t id, size_t routine);
+bool	judge_continue(t_info *all_info);
+
 
 
 

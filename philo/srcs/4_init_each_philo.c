@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 19:16:55 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/19 09:36:04 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/20 09:34:04 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void    init_each_philo(t_info *all_info)
 		philos[i].eat_times = 0; //食事した回数
 		philos[i].last_eat_time = 0; //最後に食事をした時間
 		philos[i].right_fork = &(all_info->fork[i]);
-		philos[i].right_fork = &(all_info->fork[(i + 1) % all_info->num_of_philo]); //左のフォーク
+		philos[i].left_fork = &(all_info->fork[(i + 1) % all_info->num_of_philo]); //左のフォーク
 		philos[i].time = &(all_info->time[i]); //時間
 		philos[i].all_info = (void *)all_info; //構造体のアドレス
 		philos[i].can_continue = &(all_info->can_continue); //続けられるかどうか
