@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 14:29:48 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/19 09:57:23 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/19 21:56:40 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,25 +87,25 @@ size_t  get_current_time(void)
     return (current_time);
 }
 
-void    print_time_and_rotine(t_info *all_info, size_t philo_id, size_t routine)
+void    print_time_and_routine(t_info *all_info, size_t id, size_t routine)
 {
 	size_t  current_time;
 
     //複数の哲学者スレッドがアクセスするので、ロックする
 	pthread_mutex_lock(&all_info->write);
-	current_time = get_current_time(info);
-	if (routine == NUM_YAKE_FORK && judge_continue(all_info))
-		printf("%zu %d has taken a fork\n", current_time, philo_id);
+	current_time = get_current_time();
+	if (routine == NUM_TAKE_FORK && judge_continue(all_info))
+		printf("%zu %zu has taken a fork\n", current_time, id);
 	else if (routine == NUM_EAT && judge_continue(all_info))
-		printf("%zu %d is eating\n", current_time, philo_id);
+		printf("%zu %zu is eating\n", current_time, id);
 	else if (routine == NUM_SLEEP && judge_continue(all_info))
-		printf("%zu %d is sleeping\n", current_time, philo_id);
+		printf("%zu %zu is sleeping\n", current_time, id);
 	else if (routine == NUM_THINK && judge_continue(all_info))
-		printf("%zu %d is thinking\n", current_time, philo_id);
+		printf("%zu %zu is thinking\n", current_time, id);
 	else if (routine == NUM_DIE && judge_continue(all_info))
-		printf("%zu %d died\n", current_time, philo_id);
+		printf("%zu %zu died\n", current_time, id);
 	pthread_mutex_unlock(&all_info->write);
-	return (0);
+	return ;
 }
 
 bool	judge_continue(t_info *all_info)
