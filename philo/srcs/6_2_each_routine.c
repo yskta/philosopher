@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 21:31:52 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/23 13:17:42 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/23 14:48:26 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	take_fork_routine(t_each_philo *philo, t_info *all_info)
 void	eat_count_check(t_each_philo *philo, t_info *all_info)
 {
 	//monitorスレッドもアクセスするので、ロックする
-	pthread_mutex_lock(&all_info->end_flag);
+	pthread_mutex_lock(&all_info->read_can_continue);
 	if (philo->eat_times == all_info->finish_eating_count)
 		all_info->num_of_philo_finish_eating++;
 	if (all_info->num_of_philo_finish_eating == all_info->num_of_philo)
 		all_info->can_continue = false;
-	pthread_mutex_unlock(&all_info->end_flag);
+	pthread_mutex_unlock(&all_info->read_can_continue);
 }
 
 void	eat_routine(t_each_philo *philo, t_info *all_info)

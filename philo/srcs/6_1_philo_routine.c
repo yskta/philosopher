@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:38:08 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/23 12:44:32 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/23 14:46:23 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	wait_for_die(t_each_philo *philo)
 		current_time = get_current_time();
 		if (current_time - start_time >= all_info->time_to_die)
 		{
-			pthread_mutex_lock(&all_info->end_flag);
+			pthread_mutex_lock(&all_info->edit_can_continue);
 			all_info->can_continue = false;
-			pthread_mutex_unlock(&all_info->end_flag);
+			pthread_mutex_unlock(&all_info->edit_can_continue);
 			return ;
 		}
 		usleep(500);

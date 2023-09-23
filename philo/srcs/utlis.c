@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 14:29:48 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/23 12:42:13 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/23 14:50:49 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int free_and_destroy_all(t_info *all_info)
         pthread_mutex_destroy(&all_info->time[i]);
         i++;
     }
-    pthread_mutex_destroy(&all_info->end_flag);
+    pthread_mutex_destroy(&all_info->edit_can_continue);
+    pthread_mutex_destroy(&all_info->read_can_continue);
     pthread_mutex_destroy(&all_info->count_meals);
     pthread_mutex_destroy(&all_info->write);
     //free系
@@ -102,7 +103,7 @@ void    print_time_and_routine(t_info *all_info, size_t id, size_t routine, int 
 		printf("\x1b[%dm%zu %zu is sleeping\x1b[0m\n", color, current_time, id);
 	else if (routine == NUM_THINK && judge_continue(all_info))
 		printf("\x1b[%dm%zu %zu is thinking\x1b[0m\n", color, current_time, id);
-	else if (routine == NUM_DIE && judge_continue(all_info))
+	else if (routine == NUM_DIE && judge_continue(all_info) == false)
 		printf("\x1b[%dm%zu %zu died\x1b[0m\n", color, current_time, id);
 	pthread_mutex_unlock(&all_info->write);
 	return ;
@@ -110,13 +111,13 @@ void    print_time_and_routine(t_info *all_info, size_t id, size_t routine, int 
 
 bool	judge_continue(t_info *all_info)
 {
-    pthread_mutex_lock(&all_info->end_flag);
+    pthread_mutex_lock(&all_info->read_can_continue);
 	if (all_info->can_continue == false)
     {
-        pthread_mutex_unlock(&all_info->end_flag);
+        pthread_mutex_unlock(&all_info->read_can_continue);
         return (false);
     }
-    pthread_mutex_unlock(&all_info->end_flag);
+    pthread_mutex_unlock(&all_info->read_can_continue);
     return (true);
 }
 

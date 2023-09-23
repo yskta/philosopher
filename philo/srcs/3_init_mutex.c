@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 19:01:35 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/16 19:13:20 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/23 14:51:16 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool    init_mutex(t_info *all_info)
 			return (error_msg("init mutex:pthread_mutex_init error"));
 		i++;
 	}
-	if (pthread_mutex_init(&all_info->end_flag, NULL) != 0 || pthread_mutex_init(&all_info->count_meals, NULL) != 0 || pthread_mutex_init(&all_info->write, NULL) != 0)
+	if (pthread_mutex_init(&all_info->edit_can_continue, NULL) != 0 || pthread_mutex_init(&all_info->count_meals, NULL) != 0 || pthread_mutex_init(&all_info->write, NULL) != 0 || pthread_mutex_init(&all_info->read_can_continue, NULL) != 0)
 		return (error_msg("init mutex:pthread_mutex_init error"));
 	return (true);
 }
