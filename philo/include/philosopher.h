@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 12:50:23 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/23 12:46:18 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/23 13:07:02 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct each_philo{
 	pthread_mutex_t	*time;
 	void			*all_info;
 	bool			*can_continue;
-	//size_t			ideal_time;
 }	t_each_philo;
 
 //哲学者の数や時間などのデータを保持する構造体
