@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 21:48:47 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/23 15:14:50 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:36:10 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	*monitor(void *all_info)
 				break ;
 			i++;
 		}
-		if (info->can_continue == false)
+		if (judge_continue(info) == false)
 			break ;
 		usleep(500);
 	}
@@ -56,10 +56,10 @@ bool	judge_die_latest(size_t current_time, size_t last_eat_time, t_each_philo *p
 {
 	if (current_time - last_eat_time >= all_info->time_to_die)
 	{
+		print_time_and_routine(all_info, philo->id, NUM_DIE, RED);
 		pthread_mutex_lock(&all_info->end_flag);
 		all_info->can_continue = false;
 		pthread_mutex_unlock(&all_info->end_flag);
-		print_time_and_routine(all_info, philo->id, NUM_DIE, RED);
 		return (false);
 	}
 	return (true);
@@ -69,10 +69,10 @@ bool	judge_die_start(size_t current_time,size_t start_time, t_each_philo *philo,
 {
 	if (current_time - start_time >= all_info->time_to_die)
 	{
+		print_time_and_routine(all_info, philo->id, NUM_DIE, RED);
 		pthread_mutex_lock(&all_info->end_flag);
 		all_info->can_continue = false;
 		pthread_mutex_unlock(&all_info->end_flag);
-		print_time_and_routine(all_info, philo->id, NUM_DIE, RED);
 		return (false);
 	}
 	return (true);
