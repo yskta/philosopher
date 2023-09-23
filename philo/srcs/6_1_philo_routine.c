@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:38:08 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/20 09:31:53 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/23 12:44:32 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	wait_for_die(t_each_philo *philo)
 	size_t	current_time;
 	
 	all_info = (t_info *)philo->all_info;
-	print_time_and_routine(all_info, philo->id, NUM_TAKE_FORK);
+	print_time_and_routine(all_info, philo->id, NUM_TAKE_FORK, GREEN);
 	start_time = get_current_time();
 	while (1)
 	{

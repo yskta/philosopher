@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 12:50:23 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/19 22:15:12 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/23 12:46:18 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@
 # define NUM_SLEEP 2
 # define NUM_THINK 3
 # define NUM_DIE 4
+
+# define RED 	31
+# define GREEN	32
+# define YELLOW	33
+# define BLUE	34
+# define GRAY	37
 
 //各哲学者が持つデータを保持する構造体
 typedef struct each_philo{
@@ -91,7 +97,7 @@ void	think_routine(t_each_philo *philo, t_info *all_info);
 //7_monitor.c
 void	*monitor(void *all_info);
 bool	death_check(size_t current_time, size_t start_time, t_each_philo *philo);
-bool	judge_die_lasteat(size_t current_time, size_t last_eat_time, t_each_philo *philo, t_info *info);
+bool	judge_die_latest(size_t current_time, size_t last_eat_time, t_each_philo *philo, t_info *info);
 bool	judge_die_start(size_t current_time,size_t start_time, t_each_philo *philo, t_info *info);
 
 //utils.c
@@ -100,7 +106,7 @@ size_t	ft_atoi(char *str);
 int		free_all(t_info *all_info);
 int 	free_and_destroy_all(t_info *all_info);
 size_t  get_current_time(void);
-void    print_time_and_routine(t_info *all_info, size_t id, size_t routine);
+void    print_time_and_routine(t_info *all_info, size_t id, size_t routine, int color);
 bool	judge_continue(t_info *all_info);
 
 
