@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 21:31:52 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/23 12:51:36 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/23 16:08:13 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ void	eat_routine(t_each_philo *philo, t_info *all_info)
 	pthread_mutex_lock(philo->time);
 	philo->last_eat_time = get_current_time();
 	pthread_mutex_unlock(philo->time);
-	//食事を始めたことを表示
 	print_time_and_routine(all_info, philo->id, NUM_EAT, BLUE);
-
 	//食事した回数をカウント&終わったかどうかを確認
 	if (all_info->need_to_count)
 	{
