@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 14:40:41 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/16 15:16:39 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:15:26 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool    check_args_are_number(int argc, char **argv)
 {
-    size_t  i;
+    int     i;
     size_t  j;
 
     i = 1;
