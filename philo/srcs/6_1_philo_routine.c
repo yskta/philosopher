@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:38:08 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/23 15:37:06 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/23 16:21:21 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ void	*philo_routine(void *each_philo)
 		wait_for_die(philo);
 		return NULL;
 	}
-	if (all_info->num_of_philo % 2 && philo->id == all_info->num_of_philo)
-		wait_time(all_info->time_to_eat * 2);
 	while (judge_continue(all_info) == true)
 	{
 		take_fork_routine(philo, all_info);
