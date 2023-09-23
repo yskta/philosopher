@@ -6,9 +6,12 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 12:50:23 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/23 13:07:02 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/23 13:19:09 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//メモ
+//コンパイル時：CFLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
 
 #ifndef PHILOSOPHER_H
 #define PHILOSOPHER_H
@@ -52,7 +55,7 @@ typedef struct info{
 	size_t				time_to_die;
 	size_t				time_to_eat;
 	size_t				time_to_sleep;
-	int					finish_eating_count;//食事する回数
+	size_t				finish_eating_count;//食事する回数
 	bool				need_to_count;//食事回数をカウントするかどうか
 	bool				can_continue;//全哲学者が生きてるかどうか→falseなら終了。monitorで監視
 	size_t				num_of_philo_finish_eating;//食事を終えた哲学者の数

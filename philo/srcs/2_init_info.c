@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 14:41:53 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/17 21:14:30 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/23 13:18:34 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void    set_arg(t_info *all_info, int argc, char **argv)
     all_info->time_to_sleep = ft_atoi(argv[4]);
     if (argc == 6)
     {
-        all_info->finish_eating_count = (int)ft_atoi(argv[5]);
+        all_info->finish_eating_count = ft_atoi(argv[5]);
         all_info->need_to_count = true;
     }
     else
     {
-        all_info->finish_eating_count = -1;
+        all_info->finish_eating_count = 0;
         all_info->need_to_count = false;
     }
 }
