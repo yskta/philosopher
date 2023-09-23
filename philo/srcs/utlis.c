@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 14:29:48 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/19 21:56:40 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/23 12:42:13 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,23 +87,23 @@ size_t  get_current_time(void)
     return (current_time);
 }
 
-void    print_time_and_routine(t_info *all_info, size_t id, size_t routine)
+void    print_time_and_routine(t_info *all_info, size_t id, size_t routine, int color)
 {
 	size_t  current_time;
 
     //複数の哲学者スレッドがアクセスするので、ロックする
 	pthread_mutex_lock(&all_info->write);
 	current_time = get_current_time();
-	if (routine == NUM_TAKE_FORK && judge_continue(all_info))
-		printf("%zu %zu has taken a fork\n", current_time, id);
+	if (routine == NUM_TAKE_FORK && judge_continue(all_info))//int colorを使って色を変える
+        printf("\x1b[%dm%zu %zu has taken a fork\x1b[0m\n", color, current_time, id);
 	else if (routine == NUM_EAT && judge_continue(all_info))
-		printf("%zu %zu is eating\n", current_time, id);
+		printf("\x1b[%dm%zu %zu is eating\x1b[0m\n", color, current_time, id);
 	else if (routine == NUM_SLEEP && judge_continue(all_info))
-		printf("%zu %zu is sleeping\n", current_time, id);
+		printf("\x1b[%dm%zu %zu is sleeping\x1b[0m\n", color, current_time, id);
 	else if (routine == NUM_THINK && judge_continue(all_info))
-		printf("%zu %zu is thinking\n", current_time, id);
+		printf("\x1b[%dm%zu %zu is thinking\x1b[0m\n", color, current_time, id);
 	else if (routine == NUM_DIE && judge_continue(all_info))
-		printf("%zu %zu died\n", current_time, id);
+		printf("\x1b[%dm%zu %zu died\x1b[0m\n", color, current_time, id);
 	pthread_mutex_unlock(&all_info->write);
 	return ;
 }
