@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 21:48:47 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/23 12:58:02 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:14:50 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ bool	judge_die_latest(size_t current_time, size_t last_eat_time, t_each_philo *p
 	{
 		pthread_mutex_lock(&all_info->end_flag);
 		all_info->can_continue = false;
-		print_time_and_routine(all_info, philo->id, NUM_DIE, RED);
 		pthread_mutex_unlock(&all_info->end_flag);
+		print_time_and_routine(all_info, philo->id, NUM_DIE, RED);
 		return (false);
 	}
 	return (true);
@@ -71,8 +71,8 @@ bool	judge_die_start(size_t current_time,size_t start_time, t_each_philo *philo,
 	{
 		pthread_mutex_lock(&all_info->end_flag);
 		all_info->can_continue = false;
-		print_time_and_routine(all_info, philo->id, NUM_DIE, RED);
 		pthread_mutex_unlock(&all_info->end_flag);
+		print_time_and_routine(all_info, philo->id, NUM_DIE, RED);
 		return (false);
 	}
 	return (true);
