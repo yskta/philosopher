@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 11:20:54 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/23 15:26:21 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/24 13:38:04 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int main(int argc, char **argv)
     if (!all_info)
         return (error_msg("main:malloc error"));
     if (check_input(argc, argv) == false)
+    {
+        free(all_info);
         return (0);
+    }
     if (init_info(all_info, argc, argv) == false)
         return (free_all(all_info));
     if (init_mutex(all_info) == false)
