@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 21:31:52 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/23 16:08:13 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/24 11:13:45 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	eat_routine(t_each_philo *philo, t_info *all_info)
 
 void	sleep_routine(t_each_philo *philo, t_info *all_info)
 {
-	print_time_and_routine(all_info, philo->id, NUM_SLEEP, GRAY);
+	print_time_and_routine(all_info, philo->id, NUM_SLEEP, MAZENTA);
 	wait_time(all_info->time_to_sleep);
 }
 

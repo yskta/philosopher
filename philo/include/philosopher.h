@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 12:50:23 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/23 15:17:47 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/24 11:13:36 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@
 # define NUM_THINK 3
 # define NUM_DIE 4
 
-# define RED 	31
-# define GREEN	32
-# define YELLOW	33
-# define BLUE	34
-# define GRAY	37
+# define RED		31
+# define GREEN		32
+# define YELLOW		33
+# define BLUE		34
+# define MAZENTA	35
 
 //各哲学者が持つデータを保持する構造体
 typedef struct each_philo{
