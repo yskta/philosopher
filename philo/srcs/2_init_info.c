@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 14:41:53 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/23 15:17:21 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/24 13:43:01 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool    set_other_info(t_info *all_info)
 bool    init_info(t_info *all_info, int argc, char **argv)
 {
     set_arg(all_info, argc, argv);
-    if (set_other_info(all_info) == false)
+    if (set_other_info(all_info) == false || all_info->num_of_philo == 0)
         return (false);
     return (true);   
 }
