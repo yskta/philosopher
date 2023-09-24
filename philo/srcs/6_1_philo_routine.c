@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:38:08 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/23 16:21:21 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/24 13:18:51 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	*philo_routine(void *each_philo)
 	philo = (t_each_philo *)each_philo;
 	all_info = philo->all_info;
 	if (philo->id % 2 == 0)
-		usleep(500);//どれくらい待てばいいかはわからない。要テスト。
+		usleep(500);
 	if (all_info->num_of_philo == 1)
 	{
 		wait_for_die(philo);

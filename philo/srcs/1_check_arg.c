@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 14:40:41 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/23 15:15:26 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/24 13:16:58 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,8 @@ bool    check_args_are_number(int argc, char **argv)
 
 bool    check_input(int argc, char **argv)
 {
-    //引数のエラー処理
     if (argc < 5 || argc > 6)    
 		return (error_msg("invalid arguments:too few or too many arguments!"));
-    //引数が数字かどうかのエラー処理
     if (check_args_are_number(argc, argv) == false)
         return (error_msg("invalid arguments:arguments must be number!"));
     return (true);

@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 21:31:52 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/24 11:13:45 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/24 13:19:59 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	take_fork_routine(t_each_philo *philo, t_info *all_info)
 
 void	eat_count_check(t_each_philo *philo, t_info *all_info)
 {
-	//monitorスレッドもアクセスするので、ロックする
 	pthread_mutex_lock(&all_info->end_flag);
 	if (philo->eat_times == all_info->finish_eating_count)
 		all_info->num_of_philo_finish_eating++;
@@ -33,16 +32,14 @@ void	eat_count_check(t_each_philo *philo, t_info *all_info)
 
 void	eat_routine(t_each_philo *philo, t_info *all_info)
 {
-	//monitorスレッドも死んだかどうかを判定するためにphilo->last_eat_timeにアクセスするので、ロックする
 	pthread_mutex_lock(philo->time);
 	philo->last_eat_time = get_current_time();
 	pthread_mutex_unlock(philo->time);
 	print_time_and_routine(all_info, philo->id, NUM_EAT, BLUE);
-	//食事した回数をカウント&終わったかどうかを確認
 	if (all_info->need_to_count)
 	{
 		philo->eat_times++;
-		eat_count_check(philo, all_info);//全員が食事を終えたかどうかを確認
+		eat_count_check(philo, all_info);
 	}
 	wait_time(all_info->time_to_eat);
 	pthread_mutex_unlock(philo->right_fork);

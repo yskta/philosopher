@@ -6,7 +6,7 @@
 /*   By: yokitaga <yokitaga@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 18:10:44 by yokitaga          #+#    #+#             */
-/*   Updated: 2023/09/23 18:10:57 by yokitaga         ###   ########.fr       */
+/*   Updated: 2023/09/24 13:20:30 by yokitaga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@ void    print_time_and_routine(t_info *all_info, size_t id, size_t routine, int 
 {
 	size_t  current_time;
 
-    //複数の哲学者スレッドがアクセスするので、ロックする
 	pthread_mutex_lock(&all_info->write);
 	current_time = get_current_time();
-	if (routine == NUM_TAKE_FORK && judge_continue(all_info))//int colorを使って色を変える
+	if (routine == NUM_TAKE_FORK && judge_continue(all_info))
         printf("\x1b[%dm%zu %zu has taken a fork\x1b[0m\n", color, current_time, id);
 	else if (routine == NUM_EAT && judge_continue(all_info))
 		printf("\x1b[%dm%zu %zu is eating\x1b[0m\n", color, current_time, id);
